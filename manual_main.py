@@ -15,11 +15,10 @@ class GetHentaiImg():
 
     def get_base_data(self):
         gethtml = requests.get(self.http_url)  # Get方式获取网页数据
-        
         self.num_list = self.find_element('<span class="num-pages">(.+?)</span>',gethtml.text)
         self.img_list = ['https://i.nhentai.net/'+ self.find_element('<img src="https://i.nhentai.net/(.+?\.jpg)" width=',gethtml.text)[0]]
-        
         #self.img_list = self.findall('"objURL":"(\S*?jpg|\S*?JPG)"',html, re.S)
+        
         print(self.img_list)
         for img_index in range(2,int(self.num_list[0]) + 1):
             self.img_list.append(self.img_list[0].replace('/1.','/' + str(img_index) + '.'))
