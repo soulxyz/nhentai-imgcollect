@@ -5,7 +5,10 @@
 :warning: 本程序仅供交流学习之用，请勿用于其他用途
 
 - [可执行文件下载页面](https://github.com/chenyuqin-dlut/nhentai-imgcollect/releases)
-  
+ 
+## -1.更新日志
+小小修复了由于页面内存在两个`img src`标签导致的匹配失败的问题。
+
 ## 0. 基本信息
 
 > * Python 3.8
