@@ -17,11 +17,15 @@ class GetHentaiImg():
         gethtml = requests.get(self.http_url)  # Get方式获取网页数据
         
         self.num_list = self.find_element('<span class="num-pages">(.+?)</span>',gethtml.text)
-        self.img_list = self.find_element('src="(.+?\.jpg)" width=',gethtml.text)
+        self.img_list = ['https://i.nhentai.net/'+ self.find_element('<img src="https://i.nhentai.net/(.+?\.jpg)" width=',gethtml.text)[0]]
+        
+        #self.img_list = self.findall('"objURL":"(\S*?jpg|\S*?JPG)"',html, re.S)
+        print(self.img_list)
         for img_index in range(2,int(self.num_list[0]) + 1):
             self.img_list.append(self.img_list[0].replace('/1.','/' + str(img_index) + '.'))
+            #self.img_list.append(self.img_list.replace('/1.','/' + str(img_index) + '.'))
         for url in self.img_list:
-            print(url)
+            #print(url)
             self.download_queue.put(url, block=False)
 
     def find_element(self,reg,strhtml):
@@ -80,15 +84,13 @@ class GetHentaiImg():
 
 if __name__ == '__main__':
     try:
-        http_url = input("请输入要爬取图册的海报页URL(形如: https://xxxxtai.net/g/297941/): ")
-        thraed_num = input("请输入要使用的线程数(推荐5~10): ")
+        #http_url = input("请输入要爬取图册的海报页URL(形如: https://xxxxtai.net/g/297941/): ")
+        http_url = "https://nhentai.net/g/305836/"
+        #thraed_num = input("请输入要使用的线程数(推荐5~10): ")
+        thraed_num = 10
         print(http_url,thraed_num)
         crawler = GetHentaiImg(http_url , int(thraed_num) )
         crawler.start()
     except Exception as e:
         print(f'发生错误，错误信息：{e} ')
-        print('请检查输入的简介页URL是否完整、准确')
-        print('简介页URL：从首页点击封面所进入页面的浏览器地址栏值，完全复制过来即可')
-        print('形如: https://xxxxtai.net/g/297941/')
-        input("按回车键退出")
-
+        input("Press ENTER to exit.")
