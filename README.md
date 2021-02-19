@@ -8,7 +8,7 @@
   
 ## 0. 基本信息
 
-> * Python 3.7.4
+> * Python 3.8
 > * PyQt5 (控制台版本不需要)
 
 本软件是用于批量下载 :arrow_down: 漫画网站 `nhentai` 画册的 `python` 爬虫 :spider: 程序，带有图形界面（也提供不带图形界面的小体积版本），支持自定义多线程功能，使用 `pyinstaller` 进行了打包 :inbox_tray: ，可以在未安装 `python` 的电脑上运行
